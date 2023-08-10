@@ -4,7 +4,9 @@ import {Order} from '../Order'
 import {Orders} from '../Orders'
 import {SingIn} from '../SingIn'
 import {NotFound} from '../NotFound'
+import { Navbar } from '../NavBar';
 import './app.css'
+import { Account } from '../Account';
 
 const AppRoutes = ()=>{
   //hook para poder crear rutas en React
@@ -13,6 +15,7 @@ const AppRoutes = ()=>{
     {path: '/my-order', element: <Order/>},
     {path: '/my-orders', element: <Orders/>},
     {path: '/sing-in', element: <SingIn/>},
+    {path: '/my-account', element:<Account/>},
     {path: '/*', element: <NotFound/>},
   ])
   return routes;
@@ -24,6 +27,7 @@ function App() {
     <>
      <BrowserRouter>
         <AppRoutes/>
+        <Navbar/>
      </BrowserRouter>
     </>
   )
