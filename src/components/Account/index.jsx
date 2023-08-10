@@ -1,8 +1,10 @@
 import React from 'react'
-
+import { Layout } from '../Layout'
 function Account() {
   return (
-    <h2>Account</h2>
+    <Layout>
+      Account
+    </Layout>
   )
 }
 

@@ -6,7 +6,7 @@ function Navbar() {
 
   return (
     <nav className='flex justify-between items-center 
-    fixed  w-full py-5 px-8 text-base font-normal z-10'
+    fixed  w-full py-5 px-8 top-0 text-base font-normal z-10'
     >
         {/*ul left side */}
         <ul className='flex items-center gap-3'>

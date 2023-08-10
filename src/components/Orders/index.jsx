@@ -1,8 +1,11 @@
 import React from 'react'
+import { Layout } from '../Layout'
 
 function Orders() {
   return (
-    <h2>Orders</h2>
+    <Layout>
+      Orders
+    </Layout>
   )
 }
 
