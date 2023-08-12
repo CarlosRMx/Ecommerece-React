@@ -2,34 +2,44 @@ import React from 'react'
 import { useState,useEffect } from 'react'
 import { Layout } from '../Layout'
 import { Card } from '../Card'
+import { EcommereceContex } from '../../context'
 
 function Home() {
-  const URL = 'https://api.escuelajs.co/api/v1';
-  const [products, setProducts] = useState(null);
+  
+  const {products} = React.useContext(EcommereceContex);
 
-  //consumiendo la API
-  useEffect(()=>{
+  // const URL = 'https://api.escuelajs.co/api/v1/products';
+  // const [products, setProducts] = useState(null);
 
-    const fetchData = async () =>{
-      try {
-        const respuesta= await fetch(`${URL}/products`);
-        const data = await respuesta.json();
-        setProducts(data)
-      } catch (error) {
-        console.log("Ocurrio un error con los datos");
-      }
-    }
+  // //consumiendo la API
+  // useEffect(()=>{
 
-    fetchData()
+  //   const fetchData = async () =>{
+  //     try {
+  //       const respuesta= await fetch(URL);
+  //       const data = await respuesta.json();
+  //       setProducts(data)
+  //     } catch (error) {
+  //       console.log("Ocurrio un error con los datos");
+  //     }
+  //   }
+  //   // `${URL}/products`
 
-  },[])
+  //   fetchData()
+
+  // },[])
 
   return (
     <Layout>
       Home
-      {products?.map(product =>(
-        <Card/>
-      ))}
+      <div className='grid grid-cols-4 gap-4 w-full max-w-screen-lg'>
+        {products?.map((product) =>(
+          <Card
+            key={product.id}
+            {...product}
+          />
+        ))}
+      </div>
     </Layout>
   )
 }

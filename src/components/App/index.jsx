@@ -4,9 +4,10 @@ import {Order} from '../Order'
 import {Orders} from '../Orders'
 import {SingIn} from '../SingIn'
 import {NotFound} from '../NotFound'
-import { Navbar } from '../NavBar';
+import { Navbar } from '../NavBar'
+import { Account } from '../Account'
+import { EcommereceProvider } from '../../context';
 import './app.css'
-import { Account } from '../Account';
 
 const AppRoutes = ()=>{
   //hook para poder crear rutas en React
@@ -25,10 +26,12 @@ function App() {
 
   return (
     <>
-     <BrowserRouter>
-        <AppRoutes/>
-        <Navbar/>
-     </BrowserRouter>
+      <EcommereceProvider>
+        <BrowserRouter>
+            <AppRoutes/>
+            <Navbar/>
+        </BrowserRouter>
+      </EcommereceProvider>
     </>
   )
 }

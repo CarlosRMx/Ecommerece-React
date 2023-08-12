@@ -1,12 +1,15 @@
 import React from 'react'
 import { NavItem } from '../NavLink'
+import { EcommereceContex } from '../../context';
 
 function Navbar() {
+
+    const {count}= React.useContext(EcommereceContex);
     const activeStyle='underline underline-offset-4';
 
   return (
     <nav className='flex justify-between items-center 
-    fixed  w-full py-5 px-8 top-0 text-base font-normal z-10'
+    fixed  w-full py-5 px-8 top-0 text-base font-normal bg-white z-10'
     >
         {/*ul left side */}
         <ul className='flex items-center gap-3'>
@@ -92,7 +95,7 @@ function Navbar() {
                 </NavItem>
             </li>
             <li>
-                🛒 0
+                🛒 {count}
             </li>
 
         </ul>
