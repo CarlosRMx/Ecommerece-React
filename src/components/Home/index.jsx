@@ -1,7 +1,7 @@
 import React from 'react'
-import { useState,useEffect } from 'react'
 import { Layout } from '../Layout'
 import { Card } from '../Card'
+import { ProductDetail } from '../ProductDetail'
 import { EcommereceContex } from '../../context'
 
 function Home() {
@@ -40,6 +40,7 @@ function Home() {
           />
         ))}
       </div>
+      <ProductDetail/>
     </Layout>
   )
 }

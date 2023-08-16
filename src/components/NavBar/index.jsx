@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavItem } from '../NavLink'
+import { ShoppingCartIcon} from '@heroicons/react/24/solid'
 import { EcommereceContex } from '../../context';
 
 function Navbar() {
@@ -95,7 +96,10 @@ function Navbar() {
                 </NavItem>
             </li>
             <li>
-                🛒 {count}
+                <div className='flex'>
+                    <ShoppingCartIcon className='w-6 h-6 p-1 border border-black rounded-full text-green-600'/> 
+                    {count}
+                </div>
             </li>
 
         </ul>

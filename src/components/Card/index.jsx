@@ -1,4 +1,5 @@
 import React from 'react'
+import { PlusCircleIcon} from '@heroicons/react/24/solid'
 import { EcommereceContex } from '../../context';
 
 function Card({title,price,images,category:{name}}) {
@@ -7,12 +8,16 @@ function Card({title,price,images,category:{name}}) {
   return (
     <div className='w-56 h-60 bg-white rounded-lg cursor-pointer'>
         <figure className='relative w-full h-4/5 mb-2'>
-            <button 
+            <PlusCircleIcon 
+                className='absolute w-8 h-8 top-0 right-0 m-2 text-white'
+                onClick={addCarrito}
+            />
+            {/* <button 
                 className='absolute top-0 right-0 m-2 flex justify-center
                  items-center w-8 h-8 p-1 bg-white rounded-full'
                 onClick={addCarrito}
             >+
-            </button>
+            </button> */}
             <img 
                 className='w-full h-full rounded-lg object-cover' 
                 src={images[0]}
