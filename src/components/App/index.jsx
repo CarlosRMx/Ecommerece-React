@@ -6,6 +6,7 @@ import {SingIn} from '../SingIn'
 import {NotFound} from '../NotFound'
 import { Navbar } from '../NavBar'
 import { Account } from '../Account'
+import { CheckOutOrder } from '../CheckOutOrder';
 import { EcommereceProvider } from '../../context';
 import './app.css'
 
@@ -30,6 +31,7 @@ function App() {
         <BrowserRouter>
             <AppRoutes/>
             <Navbar/>
+            <CheckOutOrder/>
         </BrowserRouter>
       </EcommereceProvider>
     </>

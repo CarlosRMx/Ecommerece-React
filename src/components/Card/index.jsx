@@ -7,8 +7,8 @@ function Card(data) {
     const {title,price,images,category:{name}} = data;
 
     const {
-        addCarrito,  
         showProduct,
+        addProductToCart,
     }= React.useContext(EcommereceContex);
 
   return (
@@ -19,7 +19,7 @@ function Card(data) {
         <figure className='relative w-full h-4/5 mb-2'>
             <PlusCircleIcon 
                 className='absolute w-8 h-8 top-0 right-0 m-2 text-white'
-                onClick={addCarrito}
+                onClick={(event)=> addProductToCart(event,data)}
             />
             <img 
                 className='w-full h-full rounded-lg object-cover' 

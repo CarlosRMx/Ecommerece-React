@@ -15,13 +15,19 @@ function EcommereceProvider({children}){
     //estado que controla la parte del componente ProductDetail si esta abierto o cerrado 
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
 
-    //Esta para poder mostar la informacion en la parte del productDetail
+    //estado para controlar el componente CheckOut si esta abierto o cerrdado
+    const [isCheckOutOpen, setIsCheckOutOpen] = useState(false);
+
+    //Estado para poder mostar la informacion en la parte del productDetail
     const [productToShow,setProductToShow] = useState({
       title: "",
       price: "",
       description: "",
       images: [],
     });
+
+    //Estado para poder almacenar los productos al momento de presionar el boton agregar
+    const [shoppingCart, setShoppingCart] = useState([]);
 
     const URL = 'https://api.escuelajs.co/api/v1/products';
     //consumiendo la API
@@ -45,15 +51,27 @@ function EcommereceProvider({children}){
     const addCarrito = ()=>{
         setCount(count + 1)
     }
-    console.log(count);
 
     const openProducDetail = ()=> setIsProductDetailOpen(true);
     const closeProductDetail = () => setIsProductDetailOpen(false);
 
-    const showProduct = (product) =>{
-      openProducDetail()
-      setProductToShow(product)
+    const openCheckOut = () => setIsCheckOutOpen(true);
+    const closeCheckOut = () => setIsCheckOutOpen(false);
+
+    const showProduct = (productDetail) =>{
+      openProducDetail();
+      setProductToShow(productDetail);
     }
+
+    const addProductToCart = (event,product) => {
+      event.stopPropagation();
+      openCheckOut();
+      closeProductDetail();
+      setCount(count + 1);
+      setShoppingCart([...shoppingCart, product]);
+    }
+
+    console.log(shoppingCart);
 
     return(
         <EcommereceContex.Provider value={{
@@ -68,6 +86,12 @@ function EcommereceProvider({children}){
             productToShow,
             setProductToShow,
             showProduct,
+            shoppingCart,
+            setShoppingCart,
+            addProductToCart,
+            isCheckOutOpen,
+            openCheckOut,
+            closeCheckOut,
         }}>
             {children}
         </EcommereceContex.Provider>
