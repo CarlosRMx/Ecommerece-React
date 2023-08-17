@@ -2,17 +2,19 @@ import React from 'react'
 import { PlusCircleIcon} from '@heroicons/react/24/solid'
 import { EcommereceContex } from '../../context';
 
-function Card({title,price,images,category:{name}}) {
+function Card(data) {
+
+    const {title,price,images,category:{name}} = data;
 
     const {
         addCarrito,  
-        openProducDetail,
+        showProduct,
     }= React.useContext(EcommereceContex);
 
   return (
     <div 
         className='w-56 h-60 bg-white rounded-lg cursor-pointer'
-        onClick={openProducDetail}
+        onClick={() => showProduct(data)}
     >
         <figure className='relative w-full h-4/5 mb-2'>
             <PlusCircleIcon 
