@@ -10,6 +10,9 @@ function EcommereceProvider({children}){
     //estado que se encarga del contadoe en el carrito de compras 
     const [count, setCount]=useState(0);
 
+    //estado que controla la parte del componente ProductDetail si esta abierto o cerrado 
+    const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
+
     const URL = 'https://api.escuelajs.co/api/v1/products';
     //consumiendo la API
     useEffect(()=>{
@@ -34,13 +37,19 @@ function EcommereceProvider({children}){
     }
     console.log(count);
 
+    const openProducDetail = ()=> setIsProductDetailOpen(true);
+    const closeProductDetail = () => setIsProductDetailOpen(false);
+
     return(
         <EcommereceContex.Provider value={{
             products,
             setProducts,
             count,
             setCount,
-            addCarrito
+            addCarrito,
+            isProductDetailOpen,
+            openProducDetail,
+            closeProductDetail,
         }}>
             {children}
         </EcommereceContex.Provider>

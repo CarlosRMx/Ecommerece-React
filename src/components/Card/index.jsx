@@ -4,20 +4,21 @@ import { EcommereceContex } from '../../context';
 
 function Card({title,price,images,category:{name}}) {
 
-    const {addCarrito}= React.useContext(EcommereceContex);
+    const {
+        addCarrito,  
+        openProducDetail,
+    }= React.useContext(EcommereceContex);
+
   return (
-    <div className='w-56 h-60 bg-white rounded-lg cursor-pointer'>
+    <div 
+        className='w-56 h-60 bg-white rounded-lg cursor-pointer'
+        onClick={openProducDetail}
+    >
         <figure className='relative w-full h-4/5 mb-2'>
             <PlusCircleIcon 
                 className='absolute w-8 h-8 top-0 right-0 m-2 text-white'
                 onClick={addCarrito}
             />
-            {/* <button 
-                className='absolute top-0 right-0 m-2 flex justify-center
-                 items-center w-8 h-8 p-1 bg-white rounded-full'
-                onClick={addCarrito}
-            >+
-            </button> */}
             <img 
                 className='w-full h-full rounded-lg object-cover' 
                 src={images[0]}
