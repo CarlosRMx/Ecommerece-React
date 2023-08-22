@@ -60,6 +60,7 @@ function EcommereceProvider({children}){
 
     const showProduct = (productDetail) =>{
       openProducDetail();
+      closeCheckOut();
       setProductToShow(productDetail);
     }
 

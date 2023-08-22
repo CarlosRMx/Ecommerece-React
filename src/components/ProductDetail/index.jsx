@@ -1,6 +1,6 @@
 import React from 'react'
 import { useContext } from 'react'
-import { XCircleIcon } from '@heroicons/react/24/solid'
+import { XMarkIcon } from '@heroicons/react/24/solid'
 import './productDetail.css'
 import { EcommereceContex } from '../../context'
 
@@ -22,8 +22,8 @@ function ProductDetail() {
     >
         <div className='flex justify-between items-center p-6'>
             <h2 className='font-medium text-xl'>Detail</h2>
-            <XCircleIcon 
-              className='w-8 h-8 cursor-pointer'
+            <XMarkIcon 
+              className='w-6 h-6 cursor-pointer'
               onClick={closeProductDetail}
             />
         </div>
