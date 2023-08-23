@@ -28,9 +28,9 @@ function ProductDetail() {
             />
         </div>
 
-        <figure className='px-6 mb-4'>
+        <figure className='flex justify-center px-6 mb-4'>
           <img
-            className='w-full h-full rounded-lg'
+            className='w-4/6 h-full rounded-lg object-cover'
             src={images[0]}
             alt={title}
           /> 
