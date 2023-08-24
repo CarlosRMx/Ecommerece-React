@@ -11,7 +11,7 @@ function ProductDetail() {
     productToShow,
   } = useContext(EcommereceContex);
 
- const {title,price,images,description} = productToShow;
+ const {title,price,image,description} = productToShow;
 
   return (
     <aside 
@@ -31,7 +31,7 @@ function ProductDetail() {
         <figure className='flex justify-center px-6 mb-4'>
           <img
             className='w-4/6 h-full rounded-lg object-cover'
-            src={images[0]}
+            src={image}
             alt={title}
           /> 
         </figure>

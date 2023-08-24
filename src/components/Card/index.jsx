@@ -4,7 +4,7 @@ import { EcommereceContex } from '../../context';
 
 function Card(data) {
 
-    const {id,title,price,images,category:{name}} = data;
+    const {id,title,price,image,category} = data;
 
     const {
         showProduct,
@@ -41,14 +41,14 @@ function Card(data) {
             {renderIcon(id)}
             <img 
                 className='w-full h-full rounded-lg object-cover' 
-                src={images[0]}
+                src={image}
                 alt={title} 
             >
             </img>
             <span 
                 className='absolute bottom-0 left-0 m-2 px-2 
                 py-0.5 text-xs rounded-lg bg-white/60'
-            >{name}
+            >{category}
             </span>
 
         </figure>

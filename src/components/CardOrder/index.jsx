@@ -11,7 +11,7 @@ function CardOrder(props) {
             <figure className='w-20 h-20'>
                 <img 
                     className='w-full h-full object-cover rounded-lg' 
-                    src={imageUrl[0]} 
+                    src={imageUrl} 
                     alt={title}
                 />
             </figure>

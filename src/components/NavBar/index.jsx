@@ -5,7 +5,7 @@ import { EcommereceContex } from '../../context';
 
 function Navbar() {
 
-    const {count}= React.useContext(EcommereceContex);
+    const {shoppingCart}= React.useContext(EcommereceContex);
     const activeStyle='underline underline-offset-4';
 
   return (
@@ -97,7 +97,7 @@ function Navbar() {
             </li>
             <li className='flex items-center'>
                 <ShoppingBagIcon className='w-6 h-6 text-black'/>
-                <div className='mx-1'>{count}</div> 
+                <div className='mx-1'>{shoppingCart.length}</div> 
             </li>
 
         </ul>

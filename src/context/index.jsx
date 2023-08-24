@@ -23,13 +23,13 @@ function EcommereceProvider({children}){
       title: "",
       price: "",
       description: "",
-      images: [],
+      images: "",
     });
 
     //Estado para poder almacenar los productos al momento de presionar el boton agregar
     const [shoppingCart, setShoppingCart] = useState([]);
 
-    const URL = 'https://api.escuelajs.co/api/v1/products';
+    const URL = 'https://fakestoreapi.com/products';
     //consumiendo la API
     useEffect(()=>{
   
@@ -42,9 +42,8 @@ function EcommereceProvider({children}){
           console.log("Ocurrio un error con los datos");
         }
       }
-      // `${URL}/products`
   
-      fetchData()
+      fetchData();
   
     },[])
 
@@ -81,7 +80,13 @@ function EcommereceProvider({children}){
       setShoppingCart(arrayCopy);
     }
 
-    console.log(shoppingCart);
+    const totalProducts = (products) => {
+      const total = products.reduce((acc,product) => acc + product.price,0);
+      return total;
+    }
+
+    console.log('Este es el total ', totalProducts(shoppingCart));
+
 
     return(
         <EcommereceContex.Provider value={{
