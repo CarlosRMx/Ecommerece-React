@@ -72,6 +72,15 @@ function EcommereceProvider({children}){
       setShoppingCart([...shoppingCart, product]);
     }
 
+    const deleteProductTocart = (idProductToDelete) =>{
+      const arrayCopy = [...shoppingCart];
+      const indexProduct = arrayCopy.findIndex(product => {
+        return product.id === idProductToDelete;
+      });
+      arrayCopy.splice(indexProduct,1);
+      setShoppingCart(arrayCopy);
+    }
+
     console.log(shoppingCart);
 
     return(
@@ -90,6 +99,7 @@ function EcommereceProvider({children}){
             shoppingCart,
             setShoppingCart,
             addProductToCart,
+            deleteProductTocart,
             isCheckOutOpen,
             openCheckOut,
             closeCheckOut,

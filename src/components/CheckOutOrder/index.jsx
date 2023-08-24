@@ -10,6 +10,7 @@ function CheckOutOrder() {
     isCheckOutOpen,
     closeCheckOut,
     shoppingCart,
+    deleteProductTocart,
   } = useContext(EcommereceContex);
 
 
@@ -33,9 +34,11 @@ function CheckOutOrder() {
         shoppingCart.map(product => (
           <CardOrder
             key={product.id}
+            id={product.id}
             title={product.title}
             imageUrl={product.images}
             price={product.price}
+            deleteProductTocart={deleteProductTocart}
           />
         ))
       }
