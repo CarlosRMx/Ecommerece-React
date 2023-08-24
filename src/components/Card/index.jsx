@@ -1,26 +1,44 @@
 import React from 'react'
-import { PlusCircleIcon} from '@heroicons/react/24/solid'
+import { PlusCircleIcon,CheckCircleIcon} from '@heroicons/react/24/solid'
 import { EcommereceContex } from '../../context';
 
 function Card(data) {
 
-    const {title,price,images,category:{name}} = data;
+    const {id,title,price,images,category:{name}} = data;
 
     const {
         showProduct,
         addProductToCart,
+        shoppingCart,
     }= React.useContext(EcommereceContex);
 
+    const renderIcon = (productToAddId)=>{
+
+        const isProductInCart = shoppingCart.filter(product => product.id === productToAddId).length > 0
+
+        if(isProductInCart){
+            return(
+                <CheckCircleIcon 
+                className='absolute w-8 h-8 top-0 right-0 m-2 text-yellow-200'
+                />
+            )
+        }else{
+            return(
+                <PlusCircleIcon 
+                className='absolute w-8 h-8 top-0 right-0 m-2 text-white'
+                onClick={(event)=> addProductToCart(event,data)}
+                />
+            )
+        }
+    }
+    
   return (
     <div 
         className='w-56 h-60 bg-white rounded-lg cursor-pointer'
         onClick={() => showProduct(data)}
     >
         <figure className='relative w-full h-4/5 mb-2'>
-            <PlusCircleIcon 
-                className='absolute w-8 h-8 top-0 right-0 m-2 text-white'
-                onClick={(event)=> addProductToCart(event,data)}
-            />
+            {renderIcon(id)}
             <img 
                 className='w-full h-full rounded-lg object-cover' 
                 src={images[0]}
