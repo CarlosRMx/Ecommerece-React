@@ -9,9 +9,6 @@ function EcommereceProvider({children}){
     //estado para el consume de la APi
     const [products, setProducts] = useState(null);
 
-    //estado que se encarga del contadoe en el carrito de compras 
-    const [count, setCount]=useState(0);
-
     //estado que controla la parte del componente ProductDetail si esta abierto o cerrado 
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
 
@@ -28,6 +25,9 @@ function EcommereceProvider({children}){
 
     //Estado para poder almacenar los productos al momento de presionar el boton agregar
     const [shoppingCart, setShoppingCart] = useState([]);
+
+    //Estado para poder almacener las order que el usuario realiza 
+    const [order, setOrder] = useState([]);
 
     const URL = 'https://fakestoreapi.com/products';
     //consumiendo la API
@@ -67,7 +67,6 @@ function EcommereceProvider({children}){
       event.stopPropagation();
       openCheckOut();
       closeProductDetail();
-      setCount(count + 1);
       setShoppingCart([...shoppingCart, product]);
     }
 
@@ -85,15 +84,25 @@ function EcommereceProvider({children}){
       return total;
     }
 
-    console.log('Este es el total ', totalProducts(shoppingCart));
+   const saveOrder = () =>{
+    const orderToSave = {
+      date:new Date().toDateString(),
+      products:shoppingCart,
+      totalProduct: shoppingCart.length,
+      totalOrder: totalProducts(shoppingCart),      
+    }
+    
+    setOrder([...order,orderToSave]);
+    //limpiando el carrito de compras
+    setShoppingCart([]);
+   }
 
+   console.log('Este es el listado de las ordenes',  order)
 
     return(
         <EcommereceContex.Provider value={{
             products,
             setProducts,
-            count,
-            setCount,
             addCarrito,
             isProductDetailOpen,
             openProducDetail,
@@ -105,9 +114,11 @@ function EcommereceProvider({children}){
             setShoppingCart,
             addProductToCart,
             deleteProductTocart,
+            totalProducts,
             isCheckOutOpen,
             openCheckOut,
             closeCheckOut,
+            saveOrder,
         }}>
             {children}
         </EcommereceContex.Provider>

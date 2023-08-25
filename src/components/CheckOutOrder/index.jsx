@@ -11,6 +11,8 @@ function CheckOutOrder() {
     closeCheckOut,
     shoppingCart,
     deleteProductTocart,
+    totalProducts,
+    saveOrder
   } = useContext(EcommereceContex);
 
 
@@ -29,7 +31,7 @@ function CheckOutOrder() {
             />
         </div>
 
-    <div className='px-6 overflow-y-scroll'>    
+    <div className='flex-1 px-6 overflow-y-scroll'>    
       {
         shoppingCart.map(product => (
           <CardOrder
@@ -42,6 +44,21 @@ function CheckOutOrder() {
           />
         ))
       }
+    </div>
+
+    <div className='flex flex-col justify-center items-center gap-4 mt-4 mb-6'>
+      <div className='w-11/12 rounded-lg bg-black'>
+        <p className='flex justify-between items-center p-4 text-white'>
+          <span className='text-medium'>Total:</span>
+          <span className='font-extrabold text-xl'>$ {totalProducts(shoppingCart)}</span>
+        </p>
+      </div>
+      <button 
+        className='w-11/12 rounded-lg p-4 font-extrabold border border-black'
+        onClick={saveOrder}
+      >
+        CheckOut
+      </button>
     </div>
 
     </aside>
