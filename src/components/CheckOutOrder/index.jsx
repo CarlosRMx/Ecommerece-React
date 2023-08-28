@@ -1,5 +1,6 @@
 import React from 'react'
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import { CardOrder } from '../CardOrder'
 import './checkOutOrder.css'
@@ -15,7 +16,7 @@ function CheckOutOrder() {
     saveOrder
   } = useContext(EcommereceContex);
 
-
+  
   return (
     <aside 
         className = {` ${isCheckOutOpen ? 'flex' : 'hidden'}
@@ -53,12 +54,14 @@ function CheckOutOrder() {
           <span className='font-extrabold text-xl'>$ {totalProducts(shoppingCart)}</span>
         </p>
       </div>
-      <button 
-        className='w-11/12 rounded-lg p-4 font-extrabold border border-black'
-        onClick={saveOrder}
-      >
-        CheckOut
-      </button>
+      <Link to='/my-orders/last' className='flex justify-center w-full'>
+        <button 
+          className='w-11/12 rounded-lg p-4 font-extrabold border border-black'
+          onClick={saveOrder}
+        >
+          CheckOut
+        </button>
+      </Link>
     </div>
 
     </aside>

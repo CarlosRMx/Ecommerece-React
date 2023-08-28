@@ -95,8 +95,16 @@ function EcommereceProvider({children}){
     setOrder([...order,orderToSave]);
     //limpiando el carrito de compras
     setShoppingCart([]);
+    closeCheckOut();
    }
 
+   const lastOrder = (listData) =>{
+    let lastItem
+    if(listData.length > 0){
+      lastItem = listData.length - 1;
+    }
+    return listData[lastItem].products;
+   }
    console.log('Este es el listado de las ordenes',  order)
 
     return(
@@ -119,6 +127,8 @@ function EcommereceProvider({children}){
             openCheckOut,
             closeCheckOut,
             saveOrder,
+            lastOrder,
+            order,
         }}>
             {children}
         </EcommereceContex.Provider>
