@@ -9,13 +9,18 @@ import { EcommereceContex } from '../../context'
 function Order() {
 
   const {
-    lastOrder,
     order
   } = useContext(EcommereceContex);
 
+  const currentPath = window.location.pathname;
+  let orderIndex = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+  if(orderIndex === 'last') orderIndex = order?.length - 1;
+  console.log(orderIndex);
+
+
   return (
     <Layout>
-    
+  
       <div className='flex justify-center items-center relative w-80 mb-6'>
         <Link to='/my-orders' className='absolute left-0'>
           <ChevronLeftIcon className='w-6 h-6 cursor-pointer text-black'/>
@@ -25,7 +30,7 @@ function Order() {
 
        <div className='flex flex-col w-80'>    
         {
-          lastOrder(order).map(product => (
+          order?.[orderIndex]?.products.map(product => (
             <CardOrder
               key={product.id}
               id={product.id}

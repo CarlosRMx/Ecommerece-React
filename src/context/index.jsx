@@ -81,7 +81,7 @@ function EcommereceProvider({children}){
 
     const totalProducts = (products) => {
       const total = products.reduce((acc,product) => acc + product.price,0);
-      return total;
+      return total.toFixed(2);
     }
 
    const saveOrder = () =>{
@@ -98,14 +98,14 @@ function EcommereceProvider({children}){
     closeCheckOut();
    }
 
-   const lastOrder = (listData) =>{
-    let lastItem
-    if(listData.length > 0){
-      lastItem = listData.length - 1;
-    }
-    return listData[lastItem].products;
-   }
-   console.log('Este es el listado de las ordenes',  order)
+  //  const lastOrder = (listData) =>{
+  //   let lastItem
+  //   if(listData.length > 0){
+  //     lastItem = listData.length - 1;
+  //   }
+  //   return listData[lastItem];
+  //  }
+  //  console.log('Este es el listado de las ordenes',  order)
 
     return(
         <EcommereceContex.Provider value={{
@@ -127,7 +127,6 @@ function EcommereceProvider({children}){
             openCheckOut,
             closeCheckOut,
             saveOrder,
-            lastOrder,
             order,
         }}>
             {children}
