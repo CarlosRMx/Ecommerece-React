@@ -29,6 +29,8 @@ function EcommereceProvider({children}){
     //Estado para poder almacener las order que el usuario realiza 
     const [order, setOrder] = useState([]);
 
+    const [searchValue, setSearchValue] = useState('');
+
     const URL = 'https://fakestoreapi.com/products';
     //consumiendo la API
     useEffect(()=>{
@@ -47,9 +49,6 @@ function EcommereceProvider({children}){
   
     },[])
 
-    const addCarrito = ()=>{
-        setCount(count + 1)
-    }
 
     const openProducDetail = ()=> setIsProductDetailOpen(true);
     const closeProductDetail = () => setIsProductDetailOpen(false);
@@ -98,20 +97,13 @@ function EcommereceProvider({children}){
     closeCheckOut();
    }
 
-  //  const lastOrder = (listData) =>{
-  //   let lastItem
-  //   if(listData.length > 0){
-  //     lastItem = listData.length - 1;
-  //   }
-  //   return listData[lastItem];
-  //  }
-  //  console.log('Este es el listado de las ordenes',  order)
+   
+   console.log('valor en el input', searchValue);
 
     return(
         <EcommereceContex.Provider value={{
             products,
             setProducts,
-            addCarrito,
             isProductDetailOpen,
             openProducDetail,
             closeProductDetail,
@@ -128,6 +120,8 @@ function EcommereceProvider({children}){
             closeCheckOut,
             saveOrder,
             order,
+            searchValue,
+            setSearchValue
         }}>
             {children}
         </EcommereceContex.Provider>
