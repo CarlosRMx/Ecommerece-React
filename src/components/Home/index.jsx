@@ -7,8 +7,40 @@ import { EcommereceContex } from '../../context'
 
 function Home() {
   
-  const {products} = React.useContext(EcommereceContex);
+  const {
+    products,
+    searchValue,
+    filteredItems
+  } = React.useContext(EcommereceContex);
 
+  const renderView = () =>{
+    if(searchValue?.length > 0){
+      if(filteredItems?.length > 0){
+        return(
+          filteredItems?.map((product) =>(
+            <Card
+              key={product.id}
+              {...product}
+            />
+          ))
+        )
+      }else{
+        return (
+          <p className='font-bold text-lg'>Ups, Result not found :(</p>
+        )
+      }
+    }else{
+      return(
+        products?.map((product) =>(
+          <Card
+            key={product.id}
+            {...product}
+          />
+        ))
+      )
+    }
+  }
+  
   return (
     <Layout>
       <div className='mb-4'>
@@ -18,12 +50,7 @@ function Home() {
       <SearchInput/>
 
       <div className='grid grid-cols-4 gap-4 w-full max-w-screen-lg'>
-        {products?.map((product) =>(
-          <Card
-            key={product.id}
-            {...product}
-          />
-        ))}
+        {renderView()}
       </div>
       <ProductDetail/>
     </Layout>

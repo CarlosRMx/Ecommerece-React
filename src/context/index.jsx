@@ -8,6 +8,12 @@ function EcommereceProvider({children}){
 
     //estado para el consume de la APi
     const [products, setProducts] = useState(null);
+    
+    //estado para poder filtar por titulo
+    const [filteredItems, setFilteredItems] = useState(null);
+
+    //estado para filtar por categoria
+    const [productsByCategory, setProductsByCategory] = useState(null);
 
     //estado que controla la parte del componente ProductDetail si esta abierto o cerrado 
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
@@ -47,7 +53,7 @@ function EcommereceProvider({children}){
   
       fetchData();
   
-    },[])
+    },[]);
 
 
     const openProducDetail = ()=> setIsProductDetailOpen(true);
@@ -97,8 +103,27 @@ function EcommereceProvider({children}){
     closeCheckOut();
    }
 
+   const filterByTitle= (products, searchValue) =>{
+      const inputValue = searchValue.toLowerCase();
+      return products?.filter(item => item.title.toLowerCase().includes(inputValue));
+   }
+   
+   const filterByCategory = (products, nameCategory) => {
+    const query = products?.filter(product => product.category === nameCategory);
+    setProductsByCategory(query);
+   }
+
+ 
+   useEffect(()=>{
+      if(searchValue){
+        setFilteredItems(filterByTitle(products,searchValue));
+      }
+
+  },[products,searchValue]);
    
    console.log('valor en el input', searchValue);
+   console.log('Filtro por titulo', filteredItems);
+   console.log('Filtro por categoria', productsByCategory);
 
     return(
         <EcommereceContex.Provider value={{
@@ -121,7 +146,8 @@ function EcommereceProvider({children}){
             saveOrder,
             order,
             searchValue,
-            setSearchValue
+            setSearchValue,
+            filteredItems
         }}>
             {children}
         </EcommereceContex.Provider>
