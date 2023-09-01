@@ -3,8 +3,8 @@ import { useContext } from 'react';
 import { EcommereceContex } from '../../context';
 function SearchInput() {
     const{ 
-        searchValue,
-        setSearchValue,
+      productsByTitle, 
+      setProductsByTitle
     } = useContext(EcommereceContex)
 
   return (
@@ -13,9 +13,9 @@ function SearchInput() {
           type='text' 
           className='w-80 p-3 mb-6 border border-black rounded-lg focus:outline-none' 
           placeholder='🔍 Search...'
-          value={searchValue}
+          value={productsByTitle}
           onChange={(event)=>{
-            setSearchValue(event.target.value);
+            setProductsByTitle(event.target.value);
           }}
         >
       </input>

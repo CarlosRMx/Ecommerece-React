@@ -1,11 +1,15 @@
 import React from 'react'
-import { NavItem } from '../NavLink'
+import { NavLink } from 'react-router-dom'
 import { ShoppingBagIcon} from '@heroicons/react/24/solid'
 import { EcommereceContex } from '../../context';
 
 function Navbar() {
 
-    const {shoppingCart}= React.useContext(EcommereceContex);
+    const {
+        shoppingCart,
+        setProductsByCategory,
+    }= React.useContext(EcommereceContex);
+
     const activeStyle='underline underline-offset-4';
 
   return (
@@ -15,56 +19,56 @@ function Navbar() {
         {/*ul left side */}
         <ul className='flex items-center gap-3'>
             <li className='text-2xl font-bold'>
-                Shopi
+                <NavLink to='/'>
+                    Shopi
+                </NavLink>
             </li>
             <li>
-                <NavItem 
+                <NavLink 
                     to='/'
+                    onClick={() => setSearchByCategory()}
                     activeStyle={activeStyle}
                 >
                 All
-                </NavItem>
+                </NavLink>
             </li>
             <li>
-                <NavItem 
-                    to='/clothes'
+                <NavLink 
+                    to='/menClothes'
+                    onClick={()=> setProductsByCategory("men's clothing")}
                     activeStyle={activeStyle}
                 >
-                Clothes
-                </NavItem>
+                Men's clothing
+                </NavLink>
             </li>
             <li>
-                <NavItem 
+                <NavLink 
+                    to='/womenClothes'
+                    onClick={()=> setProductsByCategory("women's clothing")}
+                    activeStyle={activeStyle}
+                >
+                Women's clothing
+                </NavLink>
+            </li>
+            <li>
+                <NavLink 
+                    to='/jewellery'
+                    onClick={()=> setProductsByCategory('jewelery')}
+                    activeStyle={activeStyle}
+                >
+                Jewellery 
+                </NavLink>
+            </li>
+            <li>
+                <NavLink
                     to='/electronics'
+                    onClick={()=> setProductsByCategory('electronics')}
                     activeStyle={activeStyle}
                 >
                 Electronics
-                </NavItem>
-            </li>
-            <li>
-                <NavItem 
-                    to='/furniture'
-                    activeStyle={activeStyle}
-                >
-                Furniture
-                </NavItem>
-            </li>
-            <li>
-                <NavItem 
-                    to='/toys'
-                    activeStyle={activeStyle}
-                >
-                Toys
-                </NavItem>
+                </NavLink>
             </li> 
-            <li>
-                <NavItem 
-                    to='/others'
-                    activeStyle={activeStyle}
-                >
-                Others
-                </NavItem>
-            </li>
+
         </ul>
         {/*ul rigth side  */}
         <ul className='flex items-center gap-3'>
@@ -72,28 +76,28 @@ function Navbar() {
                 carm@shopi.com
             </li>
             <li>
-                 <NavItem 
+                 <NavLink 
                     to='/my-orders'
                     activeStyle={activeStyle}
                 >
                 My orders
-                </NavItem>
+                </NavLink>
             </li>
             <li>
-                 <NavItem 
+                 <NavLink 
                     to='/my-account'
                     activeStyle={activeStyle}
                 >
                 My Account
-                </NavItem>
+                </NavLink>
             </li>
             <li>
-                 <NavItem 
+                 <NavLink 
                     to='/sing-in'
                     activeStyle={activeStyle}
                 >
                 Sign in
-                </NavItem>
+                </NavLink>
             </li>
             <li className='flex items-center'>
                 <ShoppingBagIcon className='w-6 h-6 text-black'/>

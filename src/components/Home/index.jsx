@@ -9,12 +9,12 @@ function Home() {
   
   const {
     products,
-    searchValue,
+    productsByTitle,
     filteredItems
   } = React.useContext(EcommereceContex);
 
   const renderView = () =>{
-    if(searchValue?.length > 0){
+    if(productsByTitle?.length > 0){
       if(filteredItems?.length > 0){
         return(
           filteredItems?.map((product) =>(

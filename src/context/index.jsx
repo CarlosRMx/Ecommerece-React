@@ -13,7 +13,9 @@ function EcommereceProvider({children}){
     const [filteredItems, setFilteredItems] = useState(null);
 
     //estado para filtar por categoria
-    const [productsByCategory, setProductsByCategory] = useState(null);
+    const [productsByCategory, setProductsByCategory] = useState('');
+    //by Title
+    const [productsByTitle, setProductsByTitle] = useState('');
 
     //estado que controla la parte del componente ProductDetail si esta abierto o cerrado 
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
@@ -35,7 +37,6 @@ function EcommereceProvider({children}){
     //Estado para poder almacener las order que el usuario realiza 
     const [order, setOrder] = useState([]);
 
-    const [searchValue, setSearchValue] = useState('');
 
     const URL = 'https://fakestoreapi.com/products';
     //consumiendo la API
@@ -103,27 +104,47 @@ function EcommereceProvider({children}){
     closeCheckOut();
    }
 
-   const filterByTitle= (products, searchValue) =>{
-      const inputValue = searchValue.toLowerCase();
+   const filterByTitle= (products, productsByTitle) =>{
+      const inputValue = productsByTitle.toLowerCase();
       return products?.filter(item => item.title.toLowerCase().includes(inputValue));
    }
    
-   const filterByCategory = (products, nameCategory) => {
-    const query = products?.filter(product => product.category === nameCategory);
-    setProductsByCategory(query);
+   const filterByCategory = (products, productsByCategory ) => {
+    const value = productsByCategory.toLowerCase();
+    return products?.filter(item => item.category.toLowerCase().includes(value));
    }
 
- 
-   useEffect(()=>{
-      if(searchValue){
-        setFilteredItems(filterByTitle(products,searchValue));
+   const filterBy = (searchType, products, productsByTitle, productsByCategory) => {
+      if(searchType === 'BY_TITLE'){
+        return filterByTitle(products,productsByTitle)
       }
 
-  },[products,searchValue]);
+      if(searchType === 'BY_CATEGORY'){
+        return filterByCategory(products,productsByCategory)
+      }
+
+      if(searchType === 'BY_TITLE_AND_BY_CATEGORY'){
+        const inputValue = productsByTitle.toLowerCase();
+        return filterByCategory(products,productsByCategory).filter(item => item.title.toLowerCase().includes(inputValue));
+      }
+
+      if(!searchType){
+        return products
+      }
+   }
+
+   useEffect(()=>{
+      if(productsByTitle && productsByCategory) setFilteredItems(filterBy('BY_TITLE_AND_BY_CATEGORY',products,productsByTitle,productsByCategory));
+      if(productsByTitle && !productsByCategory) setFilteredItems(filterBy('BY_TITLE',products,productsByTitle,productsByCategory));
+      if(!productsByTitle && productsByCategory) setFilteredItems(filterBy('BY_CATEGORY',products,productsByTitle,productsByCategory));
+      if(!productsByTitle && !productsByCategory) setFilteredItems(filterBy(null, products,productsByTitle,productsByCategory));
+  },[products,productsByTitle,productsByCategory]);
+
+  console.log('SearchCategory', productsByCategory);
+  console.log('FilteredObjects', filteredItems);
+  console.log('inputValue', productsByTitle);
    
-   console.log('valor en el input', searchValue);
-   console.log('Filtro por titulo', filteredItems);
-   console.log('Filtro por categoria', productsByCategory);
+ 
 
     return(
         <EcommereceContex.Provider value={{
@@ -145,9 +166,11 @@ function EcommereceProvider({children}){
             closeCheckOut,
             saveOrder,
             order,
-            searchValue,
-            setSearchValue,
-            filteredItems
+            productsByTitle,
+            setProductsByTitle,
+            filteredItems,
+            setProductsByCategory,
+            productsByCategory,
         }}>
             {children}
         </EcommereceContex.Provider>

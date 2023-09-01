@@ -14,6 +14,10 @@ const AppRoutes = ()=>{
   //hook para poder crear rutas en React
   let routes = useRoutes([
     {path: '/', element: <Home/>},
+    {path: '/menClothes', element: <Home/>},
+    {path: '/womenClothes', element: <Home/>},
+    {path: '/jewellery', element: <Home/>},
+    {path: '/electronics', element: <Home/>},
     {path: '/my-order', element: <Order/>},
     {path: '/my-orders', element: <Orders/>},
     {path: '/my-orders/last', element: <Order/>},
