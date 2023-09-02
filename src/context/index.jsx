@@ -13,9 +13,9 @@ function EcommereceProvider({children}){
     const [filteredItems, setFilteredItems] = useState(null);
 
     //estado para filtar por categoria
-    const [productsByCategory, setProductsByCategory] = useState('');
+    const [productsByCategory, setProductsByCategory] = useState(null);
     //by Title
-    const [productsByTitle, setProductsByTitle] = useState('');
+    const [productsByTitle, setProductsByTitle] = useState(null);
 
     //estado que controla la parte del componente ProductDetail si esta abierto o cerrado 
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);

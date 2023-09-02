@@ -40,7 +40,7 @@ function Home() {
       )
     }
   }
-  
+
   return (
     <Layout>
       <div className='mb-4'>
