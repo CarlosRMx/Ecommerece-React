@@ -8,38 +8,27 @@ import { EcommereceContex } from '../../context'
 function Home() {
   
   const {
-    products,
-    productsByTitle,
-    filteredItems
+    products,  
+    filteredItems,
   } = React.useContext(EcommereceContex);
 
   const renderView = () =>{
-    if(productsByTitle?.length > 0){
-      if(filteredItems?.length > 0){
-        return(
-          filteredItems?.map((product) =>(
-            <Card
-              key={product.id}
-              {...product}
-            />
-          ))
-        )
-      }else{
-        return (
-          <p className='font-bold text-lg'>Ups, Result not found :(</p>
-        )
-      }
-    }else{
+    if(filteredItems?.length > 0){
       return(
-        products?.map((product) =>(
+        filteredItems?.map((product) =>(
           <Card
             key={product.id}
             {...product}
           />
         ))
       )
+    }else{
+      return (
+        <p className='font-bold text-lg'>Ups, Result not found :(</p>
+      )
     }
   }
+
 
   return (
     <Layout>

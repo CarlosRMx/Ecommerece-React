@@ -15,7 +15,7 @@ function EcommereceProvider({children}){
     //estado para filtar por categoria
     const [productsByCategory, setProductsByCategory] = useState(null);
     //by Title
-    const [productsByTitle, setProductsByTitle] = useState(null);
+    const [productsByTitle, setProductsByTitle] = useState('');
 
     //estado que controla la parte del componente ProductDetail si esta abierto o cerrado 
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
@@ -95,12 +95,13 @@ function EcommereceProvider({children}){
       date:new Date().toDateString(),
       products:shoppingCart,
       totalProduct: shoppingCart.length,
-      totalOrder: totalProducts(shoppingCart),      
+      totalOrder: totalProducts(shoppingCart),
     }
     
     setOrder([...order,orderToSave]);
     //limpiando el carrito de compras
     setShoppingCart([]);
+    setProductsByTitle('');
     closeCheckOut();
    }
 
@@ -139,12 +140,7 @@ function EcommereceProvider({children}){
       if(!productsByTitle && productsByCategory) setFilteredItems(filterBy('BY_CATEGORY',products,productsByTitle,productsByCategory));
       if(!productsByTitle && !productsByCategory) setFilteredItems(filterBy(null, products,productsByTitle,productsByCategory));
   },[products,productsByTitle,productsByCategory]);
-
-  console.log('SearchCategory', productsByCategory);
-  console.log('FilteredObjects', filteredItems);
-  console.log('inputValue', productsByTitle);
-   
- 
+  
 
     return(
         <EcommereceContex.Provider value={{

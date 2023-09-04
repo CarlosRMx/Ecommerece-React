@@ -10,7 +10,7 @@ function Navbar() {
         setProductsByCategory,
     }= React.useContext(EcommereceContex);
 
-    const activeStyle='underline underline-offset-4';
+   
 
   return (
     <nav className='flex justify-between items-center 
@@ -27,7 +27,6 @@ function Navbar() {
                 <NavLink 
                     to='/'
                     onClick={() => setSearchByCategory()}
-                    activeStyle={activeStyle}
                 >
                 All
                 </NavLink>
@@ -36,7 +35,6 @@ function Navbar() {
                 <NavLink 
                     to='/menClothes'
                     onClick={()=> setProductsByCategory("men's clothing")}
-                    activeStyle={activeStyle}
                 >
                 Men's clothing
                 </NavLink>
@@ -45,7 +43,6 @@ function Navbar() {
                 <NavLink 
                     to='/womenClothes'
                     onClick={()=> setProductsByCategory("women's clothing")}
-                    activeStyle={activeStyle}
                 >
                 Women's clothing
                 </NavLink>
@@ -54,7 +51,6 @@ function Navbar() {
                 <NavLink 
                     to='/jewellery'
                     onClick={()=> setProductsByCategory('jewelery')}
-                    activeStyle={activeStyle}
                 >
                 Jewellery 
                 </NavLink>
@@ -63,7 +59,6 @@ function Navbar() {
                 <NavLink
                     to='/electronics'
                     onClick={()=> setProductsByCategory('electronics')}
-                    activeStyle={activeStyle}
                 >
                 Electronics
                 </NavLink>
@@ -78,7 +73,6 @@ function Navbar() {
             <li>
                  <NavLink 
                     to='/my-orders'
-                    activeStyle={activeStyle}
                 >
                 My orders
                 </NavLink>
@@ -86,7 +80,6 @@ function Navbar() {
             <li>
                  <NavLink 
                     to='/my-account'
-                    activeStyle={activeStyle}
                 >
                 My Account
                 </NavLink>
@@ -94,7 +87,6 @@ function Navbar() {
             <li>
                  <NavLink 
                     to='/sing-in'
-                    activeStyle={activeStyle}
                 >
                 Sign in
                 </NavLink>
